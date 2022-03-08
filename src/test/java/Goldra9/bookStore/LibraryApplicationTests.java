@@ -1,4 +1,4 @@
-package Goldra9.Library;
+package Goldra9.bookStore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
