@@ -4,7 +4,7 @@ package Goldra9.bookStore.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Address;
+import Goldra9.bookStore.domain.Address;
 
 import javax.persistence.*;
 
@@ -29,14 +29,18 @@ public class Member {
 
     private String email;
 
-    public Member(Long id, String name, Address address, String phone, String email) {
-        this.id = id;
+    private String personNumber;
+
+    @OneToMany(mappedBy = "member")
+    private List<Rental> rentalList = new ArrayList<>();
+
+    public Member(String name, Address address, String phone, String email, String personNumber)
+    {
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.personNumber = personNumber;
     }
-
-    private List<Rental> rentalList = new ArrayList<>();
 
 }

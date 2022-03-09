@@ -2,6 +2,7 @@ package Goldra9.bookStore.domain.item;
 
 import Goldra9.bookStore.domain.Category;
 
+import Goldra9.bookStore.domain.CategoryItem;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 public abstract class Item
 {
@@ -25,15 +26,10 @@ public abstract class Item
 
     private int stockQuantity;
 
-    public Item(Long id, String name, int price, int stockQuantity) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
+    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
+    private List<CategoryItem> categoryList = new ArrayList<>();
 
-    private List<Category> categoryList = new ArrayList<>();
-
+    //==비즈니스 로직==//
     public void addStock(int quantity)
     {
         this.stockQuantity += quantity;
@@ -46,5 +42,12 @@ public abstract class Item
         {
             throw new RuntimeException("수량이 판매된 것보다 적습니다.");
         }
+        this.stockQuantity = restStock;
+    }
+
+    public Item(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 }

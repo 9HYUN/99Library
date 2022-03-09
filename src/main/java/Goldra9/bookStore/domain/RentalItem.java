@@ -3,21 +3,25 @@ package Goldra9.bookStore.domain;
 import Goldra9.bookStore.domain.item.Item;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
-public class RentalItem {
+public class RentalItem
+{
     @Id @GeneratedValue
     @Column(name = "rental_item_id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rental_id")
     private Rental rental;
 
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
     private Item item;
 
     private int rentalPrice;
@@ -34,7 +38,7 @@ public class RentalItem {
         return rentalItem;
     }
 
-    public void endOfRental()
+    public void cancelOrReturn()
     {
         getItem().addStock(count);
     }

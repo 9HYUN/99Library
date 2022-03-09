@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,4 +20,10 @@ public class Category
 
     private String name;
 
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    private List<CategoryItem> categoryItemList = new ArrayList<>();
+
+    public Category(String name) {
+        this.name = name;
+    }
 }
