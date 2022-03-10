@@ -29,7 +29,7 @@ public class RentalService
         Item item = itemRepository.findOne(itemId);
 
         //대여상품 생성
-        RentalItem rentalItem = RentalItem.createRentalItem(item, item.getPrice(), count);
+        RentalItem rentalItem = RentalItem.createRentalItem(item, item.getRentalPrice(), count);
 
         //대여 생성
         Rental rental = Rental.createRental(member, rentalItem);

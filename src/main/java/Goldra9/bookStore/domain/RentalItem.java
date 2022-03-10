@@ -24,15 +24,15 @@ public class RentalItem
     @JoinColumn(name = "order_id")
     private Item item;
 
-    private int rentalPrice;
+    private int Price;
 
     private int count;
 
-    public static RentalItem createRentalItem(Item item, int rentalPrice, int count)
+    public static RentalItem createRentalItem(Item item, int Price, int count)
     {
         RentalItem rentalItem = new RentalItem();
         rentalItem.setItem(item);
-        rentalItem.setRentalPrice(rentalPrice);
+        rentalItem.setPrice(Price);
         rentalItem.setCount(count);
         item.removeStock(count);
         return rentalItem;
@@ -45,7 +45,7 @@ public class RentalItem
 
     public int getTotalPrice()
     {
-        int totalPrice = getRentalPrice() * getCount();
+        int totalPrice = getPrice() * getCount();
         return totalPrice;
     }
 

@@ -1,13 +1,31 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'hi. ' + ${data}" >안녕하세요. 손님</p>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="jumbotron">
+        <h1>99Library</h1>
+        <p class="lead">회원 기능</p>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
+            <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
+        </p>
+        <p class="lead">도서 등록</p>
+        <p>
+            <a class="btn btn-lg btn-dark" href="/items/new">도서 등록</a>
+            <a class="btn btn-lg btn-dark" href="/items">도서 목록</a>
+        </p>
+        <p class="lead">대여 기능</p>
+        <p>
+            <a class="btn btn-lg btn-info" href="/rental">대여 주문</a>
+            <a class="btn btn-lg btn-info" href="/rentals">대여 내역</a>
+        </p>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
 </body>
 </html>

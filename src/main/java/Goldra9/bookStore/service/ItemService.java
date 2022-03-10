@@ -26,7 +26,7 @@ public class ItemService
     public Item updateItem(Long id, Book book)
     {
         Item findItem = itemRepository.findOne(id);
-        Book updateBook = new Book(book.getAuthor(), book.getPublisher(), book.getIsbn());
+        Book updateBook = new Book(book.getName(), book.getRentalPrice(), book.getStockQuantity(),book.getAuthor(), book.getPublisher(), book.getIsbn());
         return updateBook;
     }
 
