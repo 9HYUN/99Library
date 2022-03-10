@@ -10,3 +10,6 @@ Table 설계
 2022-03-10_Goldra9
 1.repository 설계
 2.service 설계
+3.Controller 설계(item, member)
+
+
