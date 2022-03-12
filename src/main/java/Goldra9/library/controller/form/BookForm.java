@@ -1,5 +1,6 @@
 package Goldra9.library.controller.form;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
