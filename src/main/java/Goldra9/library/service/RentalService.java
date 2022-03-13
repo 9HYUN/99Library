@@ -55,7 +55,8 @@ public class RentalService
     {
         return rentalRepository.findAll();
     }
-
+    
+    //대여 검색 조회
     public List<Rental> findRental(RentalSearch rentalSearch)
     {
         return rentalRepository.findWithMember(rentalSearch);

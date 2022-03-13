@@ -46,8 +46,8 @@ public class RentalController {
 
     @GetMapping("/rentals")
     public String rentalList(@ModelAttribute("rentalSearch") RentalSearch rentalSearch, Model model) {
-        //List<Rental> rentals = rentalService.findRental(rentalSearch);
-        List<Rental> rentals = rentalRepository.findAll();
+        List<Rental> rentals = rentalService.findRental(rentalSearch);
+        //List<Rental> rentals = rentalRepository.findAll();
         model.addAttribute("rentals", rentals);
 
         return "rental/rentalList";
