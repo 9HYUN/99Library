@@ -69,7 +69,7 @@ public class RentalRepository
                 .setMaxResults(1000);
 
         if (rentalSearch.getRentalStatus() != null) {
-            query = query.setParameter("status", rentalSearch.getRentalStatus());
+            query = query.setParameter("rentalStatus", rentalSearch.getRentalStatus());
         }
         if (StringUtils.hasText(rentalSearch.getMemberName())) {
             query = query.setParameter("name", rentalSearch.getMemberName());
