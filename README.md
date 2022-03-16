@@ -1,5 +1,18 @@
 99 Library에 오신것을 환영 합니다.
 
+2022-03-16_Goldra9
+1. Entity, Table 수정
+2. CATEGORY_ITEM 삭제
+3. ITEM, CATEGORY 다대일로 수정
+
+Entity 설계
+
+![entity](https://user-images.githubusercontent.com/89749413/158616957-7da52a4c-51ea-42d8-9763-2ac656330086.PNG)
+
+Table 설계
+
+![table](https://user-images.githubusercontent.com/89749413/158617176-daa4556a-ca25-44d0-8ea6-f8cfc5811c1c.PNG)
+
 2022-03-13_Goldra9
 
 1. 대여 목록에 회원명으로 검색기능 추가(상태로 검색기능 구현 예정)
