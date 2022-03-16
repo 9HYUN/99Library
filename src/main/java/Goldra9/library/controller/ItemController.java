@@ -1,8 +1,10 @@
 package Goldra9.library.controller;
 
 import Goldra9.library.controller.form.BookForm;
+import Goldra9.library.domain.Category;
 import Goldra9.library.domain.item.Book;
 import Goldra9.library.domain.item.Item;
+import Goldra9.library.service.CategoryService;
 import Goldra9.library.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemService itemService;
+    private final CategoryService categoryService;
     //== 도서 Form 등록 ==//
     @GetMapping("/items/new")
     private String createForm(Model model) {
+        List<Category> categories = categoryService.findAll();
         model.addAttribute("BookForm", new BookForm());
+        model.addAttribute("categories", categories);
         return "items/createItemForm";
     }
 
@@ -35,7 +40,7 @@ public class ItemController {
         }
 
         Book book = new Book(form.getName(), form.getRentalPrice(), form.getStockQuantity(),
-                form.getAuthor(), form.getPublisher(), form.getIsbn());
+                             form.getCategory(), form.getAuthor(), form.getPublisher(), form.getIsbn());
 
         itemService.saveItem(book);
 
@@ -71,7 +76,7 @@ public class ItemController {
     public String updateItem(@ModelAttribute("form") BookForm form)
     {
         Book book = new Book(form.getName(), form.getRentalPrice(), form.getStockQuantity(),
-                             form.getAuthor(), form.getPublisher(), form.getIsbn());
+                             form.getCategory(), form.getAuthor(), form.getPublisher(), form.getIsbn());
         book.setId(form.getId());
         itemService.saveItem(book);
         return "redirect:/items";

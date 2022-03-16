@@ -1,5 +1,6 @@
 package Goldra9.library.domain;
 
+import Goldra9.library.domain.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,8 @@ public class Category
 
     private String name;
 
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
-    private List<CategoryItem> categoryItemList = new ArrayList<>();
+    @OneToMany(mappedBy = "category")
+    List<Item> itemList = new ArrayList<>();
 
     public Category(String name) {
         this.name = name;

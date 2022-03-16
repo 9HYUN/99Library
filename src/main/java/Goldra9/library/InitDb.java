@@ -36,15 +36,19 @@ public class InitDb
             Member member3 = new Member("name3", new Address("도3시", "스트릿3", "우편번3호"), "010-1234-3333", "sdfl3333", "3333");
             em.persist(member3);
 
-            Book book1 = new Book("정처기",1000,10,"길벗", "시나공", 12345);
-            Book book2 = new Book("정처기2",1000,5,"길벗", "시나공", 12345);
+            Category category1 = new Category("전문서적");
+            Category category2 = new Category("소설");
+            Category category3 = new Category("소설3");
+            em.persist(category1);
+            em.persist(category2);
+            em.persist(category3);
+
+            Book book1 = new Book("정처기",1000,10,category1, "시나공", "길벗",123);
+            Book book2 = new Book("정처기2",1000,5,category2, "시나공", "길벗2",345);
             em.persist(book1);
             em.persist(book2);
 
-            Category category1 = new Category("전문서적");
-            Category category2 = new Category("소설");
-            em.persist(category1);
-            em.persist(category2);
+
 
 //            RentalItem rentalItem1 = RentalItem.createRentalItem(book, 1000, 1);
 //            Rental rental = Rental.createRental(member, rentalItem1);

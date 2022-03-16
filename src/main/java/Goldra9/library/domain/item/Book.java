@@ -1,5 +1,6 @@
 package Goldra9.library.domain.item;
 
+import Goldra9.library.domain.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +16,8 @@ public class Book extends Item
     private String publisher;
     private int isbn;
 
-    public Book(String name, int rentalPrice, int stockQuantity, String author, String publisher, int isbn) {
-        super(name ,rentalPrice, stockQuantity);
+    public Book(String name, int rentalPrice, int stockQuantity, Category category, String author, String publisher, int isbn) {
+        super(name ,rentalPrice, stockQuantity, category);
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;

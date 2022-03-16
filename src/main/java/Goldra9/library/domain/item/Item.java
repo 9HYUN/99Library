@@ -1,6 +1,6 @@
 package Goldra9.library.domain.item;
 
-import Goldra9.library.domain.CategoryItem;
+import Goldra9.library.domain.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,8 +25,9 @@ public abstract class Item {
 
     private int stockQuantity;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    private List<CategoryItem> categoryItemList = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     //== 비즈니스 로직 ==//
     public void addStock(int quantity) {
@@ -41,12 +42,10 @@ public abstract class Item {
         this.stockQuantity = restStock;
     }
 
-
-    //== 연관 관계 메서드==//
-    public void addCategoryItem(CategoryItem categoryItem)
-    {
-        categoryItemList.add(categoryItem);
-        categoryItem.setItem(this);
+    //== 연관관계 메서드==//
+    public void setCategory(Category category) {
+        category.getItemList().add(this);
+        this.category = category;
     }
 
 //    //== 생성 메서드==//
@@ -61,10 +60,12 @@ public abstract class Item {
 //        return item;
 //    }
 
-    public Item(String name, int rentalPrice, int stockQuantity) {
+
+    public Item(String name, int rentalPrice, int stockQuantity, Category category) {
         this.name = name;
         this.rentalPrice = rentalPrice;
         this.stockQuantity = stockQuantity;
+        this.category = category;
     }
 }
 

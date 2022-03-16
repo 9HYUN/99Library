@@ -1,5 +1,6 @@
 package Goldra9.library.controller.form;
 
+import Goldra9.library.domain.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,4 +16,7 @@ public class BookForm
     private String author;
     private String publisher;
     private int isbn;
+    private Category category;
+
+
 }
