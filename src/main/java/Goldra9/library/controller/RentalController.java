@@ -1,9 +1,11 @@
 package Goldra9.library.controller;
 
 
+import Goldra9.library.domain.Category;
 import Goldra9.library.domain.Member;
 import Goldra9.library.domain.Rental;
 import Goldra9.library.domain.item.Item;
+import Goldra9.library.repository.CategoryRepository;
 import Goldra9.library.repository.RentalRepository;
 import Goldra9.library.repository.RentalSearch;
 import Goldra9.library.service.ItemService;
@@ -23,14 +25,17 @@ public class RentalController {
     private final MemberService memberService;
     private final ItemService itemService;
     private final RentalRepository rentalRepository;
+    private final CategoryRepository categoryRepository;
 
     @GetMapping("/rental")
     public String createForm(Model model) {
         List<Member> members = memberService.findMembers();
         List<Item> items = itemService.findAllItem();
-
         model.addAttribute("members", members);
         model.addAttribute("items", items);
+
+
+
 
         return "rental/rentalForm";
     }
@@ -49,6 +54,8 @@ public class RentalController {
         List<Rental> rentals = rentalService.findRental(rentalSearch);
         //List<Rental> rentals = rentalRepository.findAll();
         model.addAttribute("rentals", rentals);
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
 
         return "rental/rentalList";
     }

@@ -1,6 +1,7 @@
 package Goldra9.library.domain.item;
 
 import Goldra9.library.domain.Category;
+import Goldra9.library.domain.RentalItem;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,8 +45,17 @@ public abstract class Item {
 
     //== 연관관계 메서드==//
     public void setCategory(Category category) {
-        category.getItemList().add(this);
         this.category = category;
+        category.getItemList().add(this);
+    }
+
+    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
+    private List<RentalItem> rentalItemList = new ArrayList<>();
+
+    public void addRentalItem(RentalItem rentalItem)
+    {
+        rentalItemList.add(rentalItem);
+        rentalItem.setItem(this);
     }
 
 //    //== 생성 메서드==//

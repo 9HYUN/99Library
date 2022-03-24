@@ -11,7 +11,7 @@
                     <input type="text" th:field="*{memberName}" class="form-control"
                            placeholder="회원명"/>
                 </div>
-                <div class="form-group mx-sm-1 mb-2">
+                <div class="form-group mb-2">
                     <select th:field="*{rentalStatus}" class="form-control">
                         <option value="">대여상태</option>
                         <option th:each=
@@ -21,8 +21,19 @@
                         </option>
                     </select>
                 </div>
+                <div class="form-group mb-2">
+                    <select th:field="*{categoryName}" class="form-control">
+                        <option value="">카테고리</option>
+                        <option th:each="category : ${categories}"
+                                th:value="${category.name}"
+                                th:text="${category.name}"> option
+                        </option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary mb-2">검색</button>
             </form>
+
         </div>
         <table class="table table-striped">
             <thead>

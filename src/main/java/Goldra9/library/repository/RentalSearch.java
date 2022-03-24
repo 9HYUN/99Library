@@ -1,5 +1,6 @@
 package Goldra9.library.repository;
 
+import Goldra9.library.controller.form.CategoryForm;
 import Goldra9.library.domain.RentalStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,4 +10,5 @@ public class RentalSearch
 {
     private String memberName;
     private RentalStatus rentalStatus;
+    private String categoryName;
 }

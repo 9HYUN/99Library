@@ -2,6 +2,7 @@ package Goldra9.library;
 
 import Goldra9.library.domain.*;
 import Goldra9.library.domain.item.Book;
+import Goldra9.library.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ public class InitDb
     @RequiredArgsConstructor
     static class InitService {
         private final EntityManager em;
+        private final CategoryRepository categoryRepository;
         public void dbInit1()
         {
 
@@ -39,14 +41,19 @@ public class InitDb
             Category category1 = new Category("전문서적");
             Category category2 = new Category("소설");
             Category category3 = new Category("소설3");
-            em.persist(category1);
-            em.persist(category2);
-            em.persist(category3);
+            categoryRepository.save(category1);
+            categoryRepository.save(category2);
+            categoryRepository.save(category3);
+//            em.persist(category1);
+//            em.persist(category2);
+//            em.persist(category3);
 
             Book book1 = new Book("정처기",1000,10,category1, "시나공", "길벗",123);
             Book book2 = new Book("정처기2",1000,5,category2, "시나공", "길벗2",345);
             em.persist(book1);
             em.persist(book2);
+
+
 
 
 
