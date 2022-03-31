@@ -1,4 +1,10 @@
 99 Library에 오신것을 환영 합니다.
+2022-03-25_Goldra9
+1. Category 생성 추가 및 검색 생성
+
+2022-03-17_Goldra9
+
+1. Category 시스템 수정완료(도서 등록시 같이 선택 가능)
 
 2022-03-16_Goldra9
 1. Entity, Table 수정
