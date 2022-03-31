@@ -1,6 +1,7 @@
 package Goldra9.library.domain;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,6 +21,8 @@ public class Rental {
     @JoinColumn(name = "member_id")
     private Member member;
 
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime rentalDate;
 
     @Enumerated(EnumType.STRING)

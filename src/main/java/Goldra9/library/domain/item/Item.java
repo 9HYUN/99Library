@@ -21,10 +21,10 @@ public abstract class Item {
     private Long id;
 
     private String name;
-
     private int rentalPrice;
-
     private int stockQuantity;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

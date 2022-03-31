@@ -37,10 +37,12 @@ public class RentalRepository
 
     public List<Rental> findWithMember(RentalSearch rentalSearch)
     {
-        String jpql =  "select r from Rental r" +
-                       " join fetch r.member m" +
+        String jpql =
+                "select r from Rental r" +
+                " join fetch r.member m" +
                 " join fetch r.rentalItemList ri" +
-                " join fetch ri.item i";
+                " join fetch ri.item i" +
+                " join fetch i.category c";
         boolean isFirstCondition = true;
 
         //주문 상태 검색
@@ -65,6 +67,20 @@ public class RentalRepository
             jpql += " m.name like :name";
         }
 
+        //== 카테고리 검색 ==//
+        if(StringUtils.hasText(rentalSearch.getCategoryName()))
+        {
+            if (isFirstCondition) {
+                jpql += " where";
+                isFirstCondition = false;
+            } else {
+                jpql += " and";
+            }
+            jpql += " c.name like :name";
+        }
+
+
+
         TypedQuery<Rental> query = em.createQuery(jpql, Rental.class)
                 .setMaxResults(1000);
 
@@ -73,6 +89,9 @@ public class RentalRepository
         }
         if (StringUtils.hasText(rentalSearch.getMemberName())) {
             query = query.setParameter("name", rentalSearch.getMemberName());
+        }
+        if (StringUtils.hasText(rentalSearch.getCategoryName())) {
+            query = query.setParameter("name", rentalSearch.getCategoryName());
         }
 
         return query.getResultList();

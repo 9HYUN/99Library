@@ -12,6 +12,7 @@
                 <th>도서명</th>
                 <th>대여가격</th>
                 <th>재고수량</th>
+                <th>카테고리</th>
                 <th></th>
             </tr>
             </thead>
@@ -21,10 +22,11 @@
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.rentalPrice}"></td>
                 <td th:text="${item.stockQuantity}"></td>
-                <td>
-                    <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"
-                       class="btn btn-primary" role="button">수정</a>
-                </td>
+                <td th:text="${item.category.name}"></td>
+<!--                <td>-->
+<!--                    <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"-->
+<!--                       class="btn btn-primary" role="button">수정</a>-->
+<!--                </td>-->
             </tr>
             </tbody>
         </table>

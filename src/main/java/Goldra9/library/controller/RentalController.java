@@ -34,9 +34,6 @@ public class RentalController {
         model.addAttribute("members", members);
         model.addAttribute("items", items);
 
-
-
-
         return "rental/rentalForm";
     }
 
@@ -45,7 +42,7 @@ public class RentalController {
                          @RequestParam("itemId") Long itemId,
                          @RequestParam("count") int count) {
         rentalService.Rental(memberId, itemId, count);
-        return "redirect:/rentals";
+        return "redirect:/";
     }
 
 
@@ -54,6 +51,7 @@ public class RentalController {
         List<Rental> rentals = rentalService.findRental(rentalSearch);
         //List<Rental> rentals = rentalRepository.findAll();
         model.addAttribute("rentals", rentals);
+
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
 
