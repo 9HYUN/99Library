@@ -17,12 +17,14 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class MemberController {
+public class MemberController
+{
     private final MemberService memberService;
 
     //== 회원 Form 등록 ==//
     @GetMapping("/members/new")
-    public String createForm(Model model) {
+    public String createForm(Model model)
+    {
         model.addAttribute("memberForm", new MemberForm());
         return "members/createMember";
     }

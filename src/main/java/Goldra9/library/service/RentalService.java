@@ -42,7 +42,7 @@ public class RentalService
         return rental.getId();
     }
 
-    //대여 취소
+    //== 대여 취소 == //
     @Transactional
     public void cancel(Long rentalId)
     {
@@ -50,19 +50,16 @@ public class RentalService
         rental.cancel();
     }
 
-    //대여 조회
+    //== 대여 조회 == //
     public List<Rental> findAll()
     {
         return rentalRepository.findAll();
     }
-    
-    //대여 검색 조회
+
+    //== 대여 검색 조회 == //
     public List<Rental> findRental(RentalSearch rentalSearch)
     {
         return rentalRepository.findWithMember(rentalSearch);
     }
-
-
-
 
 }

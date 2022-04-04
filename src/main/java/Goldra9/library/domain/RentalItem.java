@@ -18,16 +18,13 @@ public class RentalItem
     @JoinColumn(name = "rental_id")
     private Rental rental;
 
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
-
     private int rentalPrice;
-
     private int count;
 
+    //==생성 메소드 ==//
     public static RentalItem createRentalItem(Item item, int Price, int count)
     {
         RentalItem rentalItem = new RentalItem();
@@ -38,15 +35,11 @@ public class RentalItem
         return rentalItem;
     }
 
+    //==대여 취소 로직==//
     public void cancel()
     {
         getItem().addStock(count);
     }
 
-    public int getTotalPrice()
-    {
-        int totalPrice = getRentalPrice() * getCount();
-        return totalPrice;
-    }
 
 }

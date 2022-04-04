@@ -1,5 +1,6 @@
 package Goldra9.library.service;
 
+import Goldra9.library.controller.form.BookForm;
 import Goldra9.library.domain.item.Book;
 import Goldra9.library.domain.item.Item;
 import Goldra9.library.repository.ItemRepository;
@@ -23,11 +24,19 @@ public class ItemService
     }
     
     @Transactional
-    public Item updateItem(Long id, Book book)
+    public void updateItem(Long id, BookForm book)
     {
-        Item findItem = itemRepository.findOne(id);
-        Book updateBook = new Book(book.getName(), book.getRentalPrice(), book.getStockQuantity(), book.getCategory(), book.getAuthor(), book.getPublisher(), book.getIsbn());
-        return updateBook;
+        Book findItem = (Book) itemRepository.findOne(id);
+        findItem.setName(book.getName());
+        findItem.setAuthor(book.getAuthor());
+        findItem.setIsbn(book.getIsbn());
+        findItem.setPublisher(book.getPublisher());
+        findItem.setCategory(book.getCategory());
+        findItem.setStockQuantity(book.getStockQuantity());
+        findItem.setRentalPrice(book.getRentalPrice());
+        
+//        Book updateBook = new Book(book.getName(), book.getRentalPrice(), book.getStockQuantity(), book.getCategory(), book.getAuthor(), book.getPublisher(), book.getIsbn());
+//        return updateBook;
     }
 
     public List<Item> findAllItem()

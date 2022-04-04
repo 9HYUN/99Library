@@ -32,6 +32,7 @@ public class Rental {
     private List<RentalItem> rentalItemList = new ArrayList<>();
 
 
+
     //== 연관관계 메서드==//
     public void setMember(Member member)
     {
@@ -72,7 +73,6 @@ public class Rental {
             rentalItem.cancel();
         }
     }
-    
-    
+
 }
 

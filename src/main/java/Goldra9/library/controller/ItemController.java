@@ -27,8 +27,8 @@ public class ItemController {
     @GetMapping("/items/new")
     private String createForm(Model model) {
         List<Category> categories = categoryService.findAll();
-        model.addAttribute("BookForm", new BookForm());
         model.addAttribute("categories", categories);
+        model.addAttribute("BookForm", new BookForm());
         return "items/createItemForm";
     }
 
@@ -47,6 +47,7 @@ public class ItemController {
         return "redirect:/";
     }
 
+    //==아이템 리스트==//
     @GetMapping("/items")
     public String list(Model model) {
         List<Item> items = itemService.findAllItem();
@@ -54,9 +55,12 @@ public class ItemController {
         return "items/itemList";
     }
 
+    //==아이템 수정 폼==//
     @GetMapping("items/{itemId}/edit")
     public String updateItemForm(@PathVariable("itemId") Long itemId, Model model)
     {
+
+
         Book book = (Book) itemService.findOne(itemId);
 
         BookForm form = new BookForm();
@@ -67,18 +71,19 @@ public class ItemController {
         form.setName(book.getName());
         form.setRentalPrice(book.getRentalPrice());
         form.setStockQuantity(book.getStockQuantity());
+        form.setCategory(book.getCategory());
+
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories", categories);
 
         model.addAttribute("form", form);
         return "items/updateItemForm";
     }
-
+    //==아이템 수정==//
     @PostMapping("items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form)
+    public String updateItem(@PathVariable Long itemId,@ModelAttribute("form") BookForm form)
     {
-        Book book = new Book(form.getName(), form.getRentalPrice(), form.getStockQuantity(),
-                             form.getCategory(), form.getAuthor(), form.getPublisher(), form.getIsbn());
-        book.setId(form.getId());
-        itemService.saveItem(book);
+        itemService.updateItem(itemId,form);
         return "redirect:/items";
     }
 

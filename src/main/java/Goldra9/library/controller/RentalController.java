@@ -27,6 +27,7 @@ public class RentalController {
     private final RentalRepository rentalRepository;
     private final CategoryRepository categoryRepository;
 
+    //==대여 폼==//
     @GetMapping("/rental")
     public String createForm(Model model) {
         List<Member> members = memberService.findMembers();
@@ -37,6 +38,7 @@ public class RentalController {
         return "rental/rentalForm";
     }
 
+    //==대여 등록==//
     @PostMapping("/rental")
     public String rental(@RequestParam("memberId") Long memberId,
                          @RequestParam("itemId") Long itemId,
@@ -45,19 +47,18 @@ public class RentalController {
         return "redirect:/";
     }
 
-
+    //==대여 리스트==//
     @GetMapping("/rentals")
-    public String rentalList(@ModelAttribute("rentalSearch") RentalSearch rentalSearch, Model model) {
+    public String rentalList(@ModelAttribute("rentalSearch") RentalSearch rentalSearch, Model model, Rental rental) {
         List<Rental> rentals = rentalService.findRental(rentalSearch);
-        //List<Rental> rentals = rentalRepository.findAll();
         model.addAttribute("rentals", rentals);
-
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
-
+        
         return "rental/rentalList";
     }
 
+    //==대여 취소==//
     @PostMapping("/rentals/{rentalId}/cancel")
     public String cancelRental(@PathVariable("rentalId") Long rentalId)
     {

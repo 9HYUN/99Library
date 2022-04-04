@@ -30,19 +30,17 @@
                         </option>
                     </select>
                 </div>
-
                 <button type="submit" class="btn btn-primary mb-2">검색</button>
             </form>
-
         </div>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>#</th>
                 <th>회원명</th>
-                <th>대표상품 이름</th>
-                <th>대표상품 주문가격</th>
-                <th>대표상품 주문수량</th>
+                <th>이름</th>
+                <th>주문가격</th>
+                <th>주문수량</th>
                 <th>상태</th>
                 <th>카테고리</th>
                 <th>일시</th>
@@ -58,14 +56,14 @@
                 <td th:text="${item.rentalItemList[0].count}"></td>
                 <td th:text="${item.rentalStatus}"></td>
                 <td th:text="${item.rentalItemList[0].item.category.name}"></td>
-                <td th:text="${item.rentalDate}"></td>
-
+                <td th:text="${#temporals.format(item.rentalDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td>
                     <a th:if="${item.rentalStatus.name() == 'RENTAL'}" href="#"
                        th:href="'javascript:cancel('+${item.id}+')'"
                        class="btn btn-danger">CANCEL</a>
                 </td>
             </tr>
+            <tr th:text="${totalPrice}">얼마</tr>
             </tbody>
         </table>
     </div>

@@ -22,7 +22,7 @@ class CategoryTest {
     ItemRepository itemRepository;
 
     @Test
-    void getName()
+    void totalPrice()
     {
 
     }
