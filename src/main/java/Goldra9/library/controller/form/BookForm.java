@@ -15,7 +15,7 @@ public class BookForm
     private int stockQuantity;
     private String author;
     private String publisher;
-    private int isbn;
+    private Long isbn;
     private Category category;
 
 

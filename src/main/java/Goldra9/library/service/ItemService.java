@@ -34,9 +34,7 @@ public class ItemService
         findItem.setCategory(book.getCategory());
         findItem.setStockQuantity(book.getStockQuantity());
         findItem.setRentalPrice(book.getRentalPrice());
-        
-//        Book updateBook = new Book(book.getName(), book.getRentalPrice(), book.getStockQuantity(), book.getCategory(), book.getAuthor(), book.getPublisher(), book.getIsbn());
-//        return updateBook;
+
     }
 
     public List<Item> findAllItem()

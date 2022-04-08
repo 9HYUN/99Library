@@ -21,7 +21,8 @@ public class MemberService
     public Long join(Member member)
     {
         //예외 처리
-        List<Member> findMembers = memberRepository.findByPersonNumber(member.getPersonNumber());
+        List<Member> findMembers = memberRepository
+                                    .findByPersonNumber(member.getPersonNumber());
         if(!findMembers.isEmpty())
         {
             throw new IllegalStateException("해당 주민등록번호로 가입되어있습니다.");
@@ -40,13 +41,7 @@ public class MemberService
     {
         return memberRepository.findOne(memberId);
     }
-        // 보류 set없이 어케 하지
-//    @Transactional
-//    public void update(Long id, String name)
-//    {
-//        Member member = memberRepository.findOne(id);
-//
-//    }
+
 
 
 }

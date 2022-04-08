@@ -14,9 +14,9 @@ public class Book extends Item
 {
     private String author;
     private String publisher;
-    private int isbn;
+    private Long isbn;
 
-    public Book(String name, int rentalPrice, int stockQuantity, Category category, String author, String publisher, int isbn) {
+    public Book(String name, int rentalPrice, int stockQuantity, Category category, String author, String publisher, Long isbn) {
         super(name ,rentalPrice, stockQuantity, category);
         this.author = author;
         this.publisher = publisher;
